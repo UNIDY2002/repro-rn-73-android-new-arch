@@ -1,0 +1,16 @@
+diff --git a/node_modules/@react-native/gradle-plugin/src/main/kotlin/com/facebook/react/utils/JdkConfiguratorUtils.kt b/node_modules/@react-native/gradle-plugin/src/main/kotlin/com/facebook/react/utils/JdkConfiguratorUtils.kt
+index 0d55714..2b0ef0f 100644
+--- a/node_modules/@react-native/gradle-plugin/src/main/kotlin/com/facebook/react/utils/JdkConfiguratorUtils.kt
++++ b/node_modules/@react-native/gradle-plugin/src/main/kotlin/com/facebook/react/utils/JdkConfiguratorUtils.kt
+@@ -26,6 +26,11 @@ internal object JdkConfiguratorUtils {
+     if (input.hasProperty(INTERNAL_DISABLE_JAVA_VERSION_ALIGNMENT)) {
+       return
+     }
++    // Skip configuring Java toolchains for third-party projects to avoid multiple setup of language
++    // version.
++    if (input.name != "app") {
++      return
++    }
+     input.rootProject.allprojects { project ->
+       // Allows every single module to set react.internal.disableJavaVersionAlignment also.
+       if (project.hasProperty(INTERNAL_DISABLE_JAVA_VERSION_ALIGNMENT)) {
