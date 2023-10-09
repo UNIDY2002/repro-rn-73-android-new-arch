@@ -1,0 +1,16 @@
+diff --git a/node_modules/react-native-webview/android/build.gradle b/node_modules/react-native-webview/android/build.gradle
+index f68fa80..ca4c20c 100644
+--- a/node_modules/react-native-webview/android/build.gradle
++++ b/node_modules/react-native-webview/android/build.gradle
+@@ -74,6 +74,11 @@ android {
+         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+     }
+ 
++    // See: https://github.com/react-native-webview/react-native-webview/pull/3175
++    buildFeatures {
++        buildConfig true
++    }
++
+     sourceSets {
+         main {
+             if (isNewArchitectureEnabled()) {
